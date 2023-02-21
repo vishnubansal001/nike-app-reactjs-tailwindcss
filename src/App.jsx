@@ -1,5 +1,5 @@
 import React from 'react'
-import { Hero } from './components'
+import { FlexContent, Hero } from './components'
 import { heroapi,popularsales,toprateslaes } from './data/data'
 import {Sales} from './components'
 
@@ -7,10 +7,11 @@ import {Sales} from './components'
 const App = () => {
   return (
     <>
-     <main>
+     <main className='flex flex-col gap-16 relative'>
       <Hero heroapi={heroapi}/>
-      <Sales endpoint={popularsales}/>
+      <Sales endpoint={popularsales} ifExists/>
       <Sales endpoint={toprateslaes}/>
+      <FlexContent/>
     </main> 
     </>
   )
