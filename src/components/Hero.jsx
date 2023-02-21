@@ -3,7 +3,6 @@ import Clips from './utils/Clips'
 import SocialLinks from './utils/SocialLinks';
 
 const Hero = ({heroapi : {title,subtitle,btntext,img,sociallinks,videos}}) => {
-    console.log(videos);
   return (
     <>
      <div className='relative h-auto w-auto flex flex-col'>
