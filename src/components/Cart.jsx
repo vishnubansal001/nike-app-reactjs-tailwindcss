@@ -38,7 +38,7 @@ const Cart = () => {
         >
           <CartCount onCartToggle={onCartToggle} onClearCartItems={onClearCartItems} />
           {cartItems?.length == 0 ? (
-            <CartEmpty />
+            <CartEmpty onCartToggle={onCartToggle} />
           ) : (
             <div>
               <div className="flex items-start justify-start flex-col gap-y-7 lg:gap-y-5 overflow-y-scroll h-[81vh] scroll-smooth scroll-hidden py-3">
