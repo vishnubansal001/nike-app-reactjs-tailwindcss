@@ -5,8 +5,17 @@ import {
 } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
+import { useDispatch } from "react-redux";
+import { setOpenCart } from "../app/CartSlice";
+
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
+  const dispatch = useDispatch();
+  const onCartToggle = () => {
+    dispatch(setOpenCart({
+      cartState: true,
+    }))
+  };
   const onNavScroll = () => {
     if (window.scrollY > 30) {
       setNavState(true);
@@ -55,6 +64,7 @@ const Navbar = () => {
             <li className="grid items-center">
               <button
                 type="button"
+                onClick={onCartToggle}
                 className="border-none outline-none active:scale-110 transition-all duration-300 relative"
               >
                 <ShoppingBagIcon
@@ -70,7 +80,7 @@ const Navbar = () => {
                   }`}
                 >
                   0
-                </div> 
+                </div>
               </button>
             </li>
           </ul>
