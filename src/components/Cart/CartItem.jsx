@@ -1,14 +1,57 @@
 import React from "react";
 import { MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { setRemoveItemFromCart } from "../../app/CartSlice";
+import {
+  setDecreaseItemQty,
+  setIncreaseItemQty,
+  setRemoveItemFromCart,
+} from "../../app/CartSlice";
 const CartItem = ({
   item: { id, title, text, img, color, shadow, price, cartQuantity },
 }) => {
   // console.log(item);
   const dispatch = useDispatch();
   const onRemoveItem = () => {
-    dispatch(setRemoveItemFromCart({id, title, text, img, color, shadow, price, cartQuantity}))
+    dispatch(
+      setRemoveItemFromCart({
+        id,
+        title,
+        text,
+        img,
+        color,
+        shadow,
+        price,
+        cartQuantity,
+      })
+    );
+  };
+  const onIncreaseItemQty = () => {
+    dispatch(
+      setIncreaseItemQty({
+        id,
+        title,
+        text,
+        img,
+        color,
+        shadow,
+        price,
+        cartQuantity,
+      })
+    );
+  };
+  const onDecreaseItemQty = () => {
+    dispatch(
+      setDecreaseItemQty({
+        id,
+        title,
+        text,
+        img,
+        color,
+        shadow,
+        price,
+        cartQuantity,
+      })
+    );
   };
   return (
     <>
@@ -31,22 +74,38 @@ const CartItem = ({
               <p className="text-sm text-slate-800 lg:text-xs">{text}</p>
             </div>
             <div className="flex items-center justify-around w-full">
-              <button type="button" className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90">
+              <button
+                onClick={onDecreaseItemQty}
+                type="button"
+                className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90"
+              >
                 <MinusIcon className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]" />
               </button>
-              <div className="bg-theme-cart rounded text-white font-medium lg:text-xs w-7 h-6 lg:h-5 lg:w-6 flex items-center justify-center">{cartQuantity}</div>
-              <button type="button" className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90">
-                <PlusIcon className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]"/>
+              <div className="bg-theme-cart rounded text-white font-medium lg:text-xs w-7 h-6 lg:h-5 lg:w-6 flex items-center justify-center">
+                {cartQuantity}
+              </div>
+              <button
+                onClick={onIncreaseItemQty}
+                type="button"
+                className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90"
+              >
+                <PlusIcon className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]" />
               </button>
             </div>
           </div>
         </div>
         <div className="grid items-center gap-5">
           <div className="grid items-center justify-center">
-            <h1 className="text-lg lg:text-base text-slate-900 font-medium">${price * cartQuantity}</h1>
+            <h1 className="text-lg lg:text-base text-slate-900 font-medium">
+              ${price * cartQuantity}
+            </h1>
           </div>
           <div className="grid items-center justify-center">
-            <button type="button" className="bg-theme-cart rounded p-1 lg:p-0.5 grid items-center justify-items-center cursor-pointer" onClick={onRemoveItem}>
+            <button
+              type="button"
+              className="bg-theme-cart rounded p-1 lg:p-0.5 grid items-center justify-items-center cursor-pointer"
+              onClick={onRemoveItem}
+            >
               <TrashIcon className="w-5 h-5 text-white" />
             </button>
           </div>

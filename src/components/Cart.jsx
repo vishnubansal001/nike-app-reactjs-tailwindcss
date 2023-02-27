@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartItems,
   selectCartState,
+  setClearCartItems,
   setCloseCart,
 } from "../app/CartSlice.js";
 
@@ -20,6 +21,9 @@ const Cart = () => {
       })
     );
   };
+  const onClearCartItems = () => {
+    dispatch(setClearCartItems());
+  };
   return (
     <>
       <div
@@ -32,7 +36,7 @@ const Cart = () => {
         <div
           className={`blur-effect-theme h-screen max-w-xl w-full absolute right-0`}
         >
-          <CartCount onCartToggle={onCartToggle} />
+          <CartCount onCartToggle={onCartToggle} onClearCartItems={onClearCartItems} />
           {cartItems?.length == 0 ? (
             <CartEmpty />
           ) : (
