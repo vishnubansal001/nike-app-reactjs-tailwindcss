@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
+import {setAddItemToCart} from '../../app/CartSlice.js';
 
 const Item = ({
   ifExists,
@@ -13,6 +15,11 @@ const Item = ({
   rating,
   price,
 }) => {
+  const dispatch = useDispatch();
+  const onAddToCart = () => {
+    const item = { id, title, text, img, color, shadow, price };
+    dispatch(setAddItemToCart(item));
+  };
   return (
     <>
       <div
@@ -46,6 +53,7 @@ const Item = ({
             <button
               type="button"
               className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
+              onClick={() => onAddToCart()}
             >
               <ShoppingBagIcon className="icon-style text-slate-900" />
             </button>
