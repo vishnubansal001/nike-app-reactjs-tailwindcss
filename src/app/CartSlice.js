@@ -3,7 +3,9 @@ import toast from "react-hot-toast";
 
 const initialState = {
   cartState: false,
-  cartItems: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+  cartItems: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
 };
 const CartSlice = createSlice({
   initialState,
@@ -22,18 +24,26 @@ const CartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
 
-        toast.success(`${action.payload.title} Item Quantity increased`)
+        toast.success(`${action.payload.title} Item Quantity increased`);
       } else {
         const temp = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(temp);
-        toast.success(`${action.payload.title} added to cart`)
+        toast.success(`${action.payload.title} added to cart`);
       }
-      localStorage.setItem('cart',JSON.stringify(state.cartItems));
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
+    },
+    setRemoveItemFromCart: (state, action) => {
+      const removeItem = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      state.cartItems = removeItem;
+      localStorage.setItem("cart",JSON.stringify(state.cartItems));
+      toast.success(`${action.payload.title} Removed From Cart`);
     },
   },
 });
 
-export const { setOpenCart, setCloseCart, setAddItemToCart } =
+export const { setOpenCart, setCloseCart, setAddItemToCart,setRemoveItemFromCart } =
   CartSlice.actions;
 export const selectCartState = (state) => state.cart.cartState;
 export const selectCartItems = (state) => state.cart.cartItems;
