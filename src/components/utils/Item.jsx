@@ -30,7 +30,7 @@ const Item = ({
   return (
     <>
       <div
-        className={`relative bg-gradient-to-b ${color} ${shadow} grid items-center ${
+        className={`relative bg-gradient-to-b ${color} shadow-lg grid items-center ${
           ifExists ? "justify-items-start" : "justify-items-center"
         } rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}
       >
@@ -56,10 +56,10 @@ const Item = ({
               </h1>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mb-4">
             <button
               type="button"
-              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
+              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow-md hover:shadow-lg"
               onClick={() => onAddToCart()}
             >
               <ShoppingBagIcon className="icon-style text-slate-900" />
@@ -70,7 +70,7 @@ const Item = ({
                 onAddToCart();
                 onCartToggle();
               }}
-              className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black "
+              className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow-md hover:shadow-lg text-sm text-black "
             >
               {btn}
             </button>

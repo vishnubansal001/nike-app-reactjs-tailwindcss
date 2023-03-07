@@ -70,7 +70,7 @@ const Navbar = () => {
               >
                 <ShoppingBagIcon
                   className={`icon-style ${
-                    navState && "text-slate-900 transition-all duration-300"
+                    navState && "text-slate-900 transition-all duration-400"
                   }`}
                 />
                 <div
